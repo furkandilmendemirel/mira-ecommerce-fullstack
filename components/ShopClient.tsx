@@ -19,10 +19,24 @@ export default function ShopClient() {
   );
   const [limit, setLimit] = useState(8);
 
-  useEffect(() => {
-    dispatch(fetchProducts({ filters, limit }));
-  }, [dispatch, filters, limit]);
-
+ useEffect(() => {
+  dispatch(
+    fetchProducts({
+      filters: {
+        category: filters.category,
+        query: filters.query,
+        sort: filters.sort,
+      },
+      limit,
+    })
+  );
+}, [
+  dispatch,
+  filters.category,
+  filters.query,
+  filters.sort,
+  limit,
+]);
   return (
     <main>
       <section className="shop-hero page-shell">
